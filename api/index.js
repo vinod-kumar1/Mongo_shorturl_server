@@ -43,7 +43,7 @@ app.get("/:hash", async (req, res) => {
       res.end();
     } else {
       console.log("404 not found!");
-      res.sendFile("/Users/vinod/Desktop/URL-Shortner/public/404.html");
+      res.sendFile("/Users/vinod/server-auth/404.html");
     }
   } catch (err) {
     console.log("Error", err);
