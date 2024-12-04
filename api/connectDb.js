@@ -5,6 +5,29 @@ dotenv.config();
 export async function connectDb() {
   const uri = `mongodb+srv://${process.env.mongoose_username}:${process.env.mongoose_password}@vinod-cluster.wknk7.mongodb.net/shortenUrl`;
   await mongoose.connect(uri);
+  const mongoose = require('mongoose');
+const db = mongoose.connection;
+
+// Check connection status
+db.on('connected', () => {
+  console.log('Mongoose connected to MongoDB!');
+});
+
+db.on('error', (err) => {
+  console.error('Mongoose connection error:', err);
+});
+
+db.on('disconnected', () => {
+  console.log('Mongoose disconnected from MongoDB.');
+});
+
+// Optional: check connection state (numeric code)
+console.log('Mongoose connection state:', mongoose.connection.readyState);
+// 0: disconnected
+// 1: connected
+// 2: connecting
+// 3: disconnecting
+
 }
 
 let urlSchema = new mongoose.Schema({
